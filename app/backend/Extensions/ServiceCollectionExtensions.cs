@@ -73,7 +73,11 @@ internal static class ServiceCollectionExtensions
             }
             else
             {
-                ...
+                var openAIApiKey = config["OpenAIApiKey"];
+                ArgumentNullException.ThrowIfNullOrEmpty(openAIApiKey);
+
+                var openAIClient = new OpenAIClient(openAIApiKey);
+                return openAIClient;
             }
         });
 
